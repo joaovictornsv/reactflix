@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import useForm from '../../../hooks/useForm';
 import Button from '../../../components/Button';
+import categoriesRepositories from '../../../repositories/categorias';
 import videosRepositories from '../../../repositories/videos';
 
 function CadastroVideo() {
   const history = useHistory();
+  const [categorias, setCategorias] = useState([]);
+  const categoryTitles = categorias.map(({ titulo }) => titulo);
   const { values, handleChange } = useForm({
     titulo: 'Vídeo Padrão',
-    ulr: 'https://youtube.com',
-    catergoria: 'Front End',
+    url: 'https://youtube.com',
+    categoria: 'Front End',
   });
+
+  useEffect(() => {
+    categoriesRepositories.getAll()
+      .then((categoriesFromServer) => {
+        setCategorias(categoriesFromServer);
+      });
+  }, []);
+
   return (
 
     <PageDefault>
@@ -20,10 +31,16 @@ function CadastroVideo() {
 
       <form onSubmit={(event) => {
         event.preventDefault();
+
+        // eslint-disable-next-line arrow-body-style
+        const categoriaEscolhida = categorias.find((categoria) => {
+          return categoria.titulo === values.categoria;
+        });
+
         videosRepositories.create({
           titulo: values.titulo,
           url: values.url,
-          categoriaId: 1,
+          categoriaId: categoriaEscolhida.id,
         })
           .then(() => {
             history.push('/');
@@ -49,6 +66,7 @@ function CadastroVideo() {
           name="categoria"
           value={values.categoria}
           onChange={handleChange}
+          suggestions={categoryTitles}
         />
 
         <Button type="submit">

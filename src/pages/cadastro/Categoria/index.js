@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import categoriesRepositories from '../../../repositories/categorias';
 import useForm from '../../../hooks/useForm';
-import categoriasRepositories from '../../../repositories/categorias';
 
 function CadastroCategoria() {
   const valoresIniciais = {
@@ -18,7 +18,7 @@ function CadastroCategoria() {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    categoriasRepositories.getAllWithVideos();
+    categoriesRepositories.getAllWithVideos();
   }, []);
 
   return (
