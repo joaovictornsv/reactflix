@@ -32,7 +32,7 @@ function FormField({
 FormField.defaultProps = {
   as: 'input',
   type: 'text',
-  value: '0',
+  value: '',
   onChange: () => {},
 };
 
