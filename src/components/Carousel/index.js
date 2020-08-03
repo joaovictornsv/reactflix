@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { VideoCardGroupContainer, Title, ExtraLink } from './styles';
+import {
+  VideoCardGroupContainer, Title, ExtraLink, CheckBox,
+} from './styles';
 import VideoCard from './components/VideoCard';
 import Slider, { SliderItem } from './components/Slider';
 
@@ -35,6 +37,7 @@ function Carousel({
 
           return (
             <SliderItem key={video.titulo}>
+              <CheckBox type="checkbox" />
               <VideoCard
                 videoTitle={video.titulo}
                 videoURL={video.url}

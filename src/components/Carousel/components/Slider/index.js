@@ -16,11 +16,11 @@ const Container = styled.ul`
     height: 30px;
     transform: initial;
     &:before {
-      color: ${({slickColor}) => `${slickColor}`};
+      color: ${({ slickColor }) => `${slickColor}`};
       font-size: 30px;
     }
   }
-  
+
   .slick-prev {
     left: 0;
   }
@@ -31,6 +31,7 @@ const Container = styled.ul`
 
 export const SliderItem = styled.li`
   margin-right: 16px;
+  outline: none;
   img {
     margin: 16px;
     width: 298px;
@@ -56,4 +57,4 @@ const Slider = ({ children, color }) => (
   </Container>
 );
 
-export default Slider; 
+export default Slider;

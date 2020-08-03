@@ -41,7 +41,7 @@ export const VideoCardList = styled.ul`
   display: flex;
   overflow-x: auto;
   flex-direction: row;
-  
+
   li {
     margin-right: 16px;
   }
@@ -52,4 +52,19 @@ export const VideoCardGroupContainer = styled.section`
   min-height: 197px;
   margin-left: 5%;
   margin-bottom: 16px;
+`;
+
+export const CheckBox = styled.input`
+  position: relative;
+  left: 286px;
+  height: 20px;
+  width: 20px;
+  top: 30px;
+  z-index: 10;
+  display: flex;
+  outline: none;
+  cursor: pointer;
+  &:checked ~ a::before {
+    opacity: 1;
+  }
 `;
